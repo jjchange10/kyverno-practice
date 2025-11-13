@@ -1,0 +1,22 @@
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: require-labels-test
+policies:
+  - clusterpolicy.yaml
+resources:
+  - ../../manifest/test-pod-valid.yaml
+  - ../../manifest/test-pod-invalid.yaml
+results:
+  - policy: require-labels
+    rule: check-team
+    resources:
+      - test-pod-valid
+    kind: Pod
+    result: pass
+  - policy: require-labels
+    rule: check-team
+    resources:
+      - test-pod-invalid
+    kind: Pod
+    result: fail
