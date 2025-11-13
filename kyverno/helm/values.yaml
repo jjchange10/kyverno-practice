@@ -397,7 +397,8 @@ config:
     'admissions.enforcer/disabled': 'true'
 
   # -- Defines labels to set on webhook configurations.
-  webhookLabels: {}
+  webhookLabels:
+    app.kubernetes.io/managed-by: argocd
     # Example to adopt webhook resources in ArgoCD:
     # 'argocd.argoproj.io/instance': 'kyverno'
 
