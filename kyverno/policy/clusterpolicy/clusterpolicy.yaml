@@ -10,6 +10,10 @@ spec:
       - resources:
           kinds:
           - Pod
+    exclude:
+      resources:
+        namespaces:
+          - kube-system
     validate:
       failureAction: Enforce
       message: "label 'team' is required"

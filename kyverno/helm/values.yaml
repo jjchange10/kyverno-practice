@@ -105,6 +105,118 @@ config:
     - '[Secret,{{ include "kyverno.namespace" . }},{{ template "kyverno.admission-controller.serviceName" . }}.{{ template "kyverno.namespace" . }}.svc.*]'
     - '[Secret,{{ include "kyverno.namespace" . }},{{ template "kyverno.cleanup-controller.name" . }}.{{ template "kyverno.namespace" . }}.svc.*]'
 
+# Features configuration
+features:
+  admissionReports:
+    # -- Enables the feature
+    enabled: true
+  aggregateReports:
+    # -- Enables the feature
+    enabled: true
+  policyReports:
+    # -- Enables the feature
+    enabled: true
+  validatingAdmissionPolicyReports:
+    # -- Enables the feature
+    enabled: true
+  mutatingAdmissionPolicyReports:
+    # -- Enables the feature
+    enabled: false
+  reporting:
+    # -- Enables the feature
+    validate: true
+    # -- Enables the feature
+    mutate: true
+    # -- Enables the feature
+    mutateExisting: true
+    # -- Enables the feature
+    imageVerify: true
+    # -- Enables the feature
+    generate: true
+  autoUpdateWebhooks:
+    # -- Enables the feature
+    enabled: true
+  backgroundScan:
+    # -- Enables the feature
+    enabled: true
+    # -- Number of background scan workers
+    backgroundScanWorkers: 2
+    # -- Background scan interval
+    backgroundScanInterval: 1h
+    # -- Skips resource filters in background scan
+    skipResourceFilters: false
+  configMapCaching:
+    # -- Enables the feature
+    enabled: true
+  controllerRuntimeMetrics:
+    # -- Bind address for controller-runtime metrics (use "0" to disable it)
+    bindAddress: ":8080"
+  deferredLoading:
+    # -- Enables the feature
+    enabled: true
+  dumpPayload:
+    # -- Enables the feature
+    enabled: false
+  forceFailurePolicyIgnore:
+    # -- Enables the feature
+    enabled: false
+  generateValidatingAdmissionPolicy:
+    # -- Enables the feature
+    enabled: true
+  generateMutatingAdmissionPolicy:
+    # -- Enables the feature
+    enabled: false
+  dumpPatches:
+    # -- Enables the feature
+    enabled: false
+  globalContext:
+    # -- Maximum allowed response size from API Calls. A value of 0 bypasses checks (not recommended)
+    maxApiCallResponseLength: 2000000
+  logging:
+    # -- Logging format
+    format: text
+    # -- Logging verbosity
+    verbosity: 2
+  omitEvents:
+    # -- Events which should not be emitted (possible values `PolicyViolation`, `PolicyApplied`, `PolicyError`, and `PolicySkipped`)
+    eventTypes:
+      - PolicyApplied
+      - PolicySkipped
+      # - PolicyViolation
+      # - PolicyError
+  policyExceptions:
+    # -- Enables the feature
+    enabled: false
+    # -- Restrict policy exceptions to a single namespace
+    # Set to "*" to allow exceptions in all namespaces
+    namespace: ''
+  protectManagedResources:
+    # -- Enables the feature
+    enabled: false
+  registryClient:
+    # -- Allow insecure registry
+    allowInsecure: false
+    # -- Enable registry client helpers
+    credentialHelpers:
+    - default
+    - google
+    - amazon
+    - azure
+    - github
+  ttlController:
+    # -- Reconciliation interval for the label based cleanup manager
+    reconciliationInterval: 1m
+  tuf:
+    # -- Enables the feature
+    enabled: false
+    # -- (string) Path to Tuf root
+    root: ~
+    # -- (string) Raw Tuf root
+    rootRaw: ~
+    # -- (string) Tuf mirror
+    mirror: ~
+
+
 admissionController:
   autoscaling:
     enabled: true
