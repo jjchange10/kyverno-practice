@@ -105,9 +105,6 @@ config:
     - '[Secret,{{ include "kyverno.namespace" . }},{{ template "kyverno.admission-controller.serviceName" . }}.{{ template "kyverno.namespace" . }}.svc.*]'
     - '[Secret,{{ include "kyverno.namespace" . }},{{ template "kyverno.cleanup-controller.name" . }}.{{ template "kyverno.namespace" . }}.svc.*]'
 
-resourceFiltersExcludeNamespaces:
-  - 'kube-system'
-  
 admissionController:
   autoscaling:
     enabled: true
