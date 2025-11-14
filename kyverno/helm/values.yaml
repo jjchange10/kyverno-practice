@@ -1,7 +1,7 @@
 config:
   resourceFilters:
     - '[Event,*,*]'
-    - '[*/*,kube-system,*]'
+    - '[*,kube-system,*]'
     - '[*/*,kube-public,*]'
     - '[*/*,kube-node-lease,*]'
     - '[Node,*,*]'
