@@ -67,6 +67,17 @@ cleanupController:
 reportsController:
   enabled: true
   replicas: 3
+  rbac:
+    clusterRole:
+      # -- Extra resource permissions to add in the cluster role
+      extraResources:
+        - apiGroups:
+            - ''
+          resources:
+            - nodes
+          verbs:
+            - get
+            - list
   resources:
     # -- Pod resource limits
     limits:
