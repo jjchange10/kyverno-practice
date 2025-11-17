@@ -75,6 +75,8 @@ reportsController:
             - ''
           resources:
             - nodes
+            - nodes/status
+            - podtemplates
           verbs:
             - get
             - list
