@@ -35,11 +35,3 @@ spec:
     - group: "*"
       kind: "*"
 
-  roles:
-    - name: platform-admin
-      description: Admin role for platform project
-      policies:
-        - p, proj:platform:platform-admin, applications, *, platform/*, allow
-        - p, proj:platform:platform-admin, applications, *, */*, allow
-      users:
-        - admin

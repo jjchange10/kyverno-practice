@@ -13,6 +13,7 @@ spec:
 
   sourceNamespaces:
     - argocd
+    - platform
 
   # Only permit applications to deploy to the argocd namespace in the same cluster
   destinations:
