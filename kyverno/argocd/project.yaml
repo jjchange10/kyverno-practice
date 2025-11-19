@@ -2,20 +2,24 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: platform
-  namespace: platform
+  namespace: argocd
 spec:
   # Project description
   description: Platform for applications
 
   # Allow manifests to deploy from any Git repos
   sourceRepos:
-    - '*'
+    - https://github.com/jjchange10/kyverno-practice.git
+    - https://kyverno.github.io/kyverno/
 
   sourceNamespaces:
+    - argocd
     - platform
 
   # Only permit applications to deploy to the argocd namespace in the same cluster
   destinations:
+    - namespace: argocd
+      server: https://kubernetes.default.svc
     - namespace: platform
       server: https://kubernetes.default.svc
     - namespace: kyverno
@@ -26,10 +30,16 @@ spec:
     - group: "*"
       kind: "*"
 
+  # Allow all namespaced resources
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+
   roles:
     - name: platform-admin
       description: Admin role for platform project
       policies:
         - p, proj:platform:platform-admin, applications, *, platform/*, allow
-      groups:
-        - admin:kyverno-platform
+        - p, proj:platform:platform-admin, applications, *, */*, allow
+      users:
+        - admin

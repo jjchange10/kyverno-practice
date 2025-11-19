@@ -1,3 +1,5 @@
+fullnameOverride: platform_kyverno
+
 config:
   resourceFiltersIncludeNamespaces:
     - 'argocd'

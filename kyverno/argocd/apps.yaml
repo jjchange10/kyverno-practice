@@ -9,7 +9,7 @@ spec:
     namespace: platform
   project: app-of-apps
   source:
-    path: kyverno/applications
+    path: kyverno/applications-apps
     repoURL: https://github.com/jjchange10/kyverno-practice.git
     targetRevision: main
   syncPolicy:

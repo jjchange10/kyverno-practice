@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: app-of-apps
+  namespace: argocd
+spec:
+  # Project description
+  description: Manage App of Apps
+
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+    - https://github.com/jjchange10/kyverno-practice.git
+
+  sourceNamespaces:
+    - argocd
+
+  # Only permit applications to deploy to the argocd namespace in the same cluster
+  destinations:
+    - namespace: '*'
+      server: https://kubernetes.default.svc
+
+  # Deny all cluster-scoped resources from being created, except for Namespace
+  clusterResourceWhitelist:
+    - group: argoproj.io
+      kind: Application
