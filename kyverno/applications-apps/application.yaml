@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kyverno
+  name: kyverno-apps
   namespace: argocd
   annotations:
     argocd.argoproj.io/compare-options: ServerSideDiff=true,IncludeMutationWebhook=true
@@ -15,7 +15,7 @@ spec:
       chart: kyverno
       targetRevision: 3.6.0
       helm:
-        releaseName: kyverno-helm
+        releaseName: kyverno-apps
         valueFiles:
           - $repo/kyverno/helm/values.yaml
     - repoURL: https://github.com/jjchange10/kyverno-practice.git
