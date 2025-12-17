@@ -1,0 +1,11 @@
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Values
+metadata:
+  name: values
+namespaceSelector:
+  - name: test-namespace-pass-1
+    labels:
+      team: backend
+  - name: test-namespace-pass-2
+    labels:
+      app: test

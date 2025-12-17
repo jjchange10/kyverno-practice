@@ -3,7 +3,7 @@ kind: Test
 metadata:
   name: require-labels-test
 policies:
-  - clusterpolicy.yaml
+  - ../clusterpolicy/clusterpolicy.yaml
 resources:
   - ../../manifest/test-pod-valid.yaml
   - ../../manifest/test-pod-invalid.yaml

@@ -12,4 +12,3 @@ helmCharts:
   releaseName: kyverno
   namespace: kyverno
   version: 3.5.2
-  valuesFile: ../../../kyverno/helm/values.yaml

@@ -1,0 +1,35 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-memory-limit
+  annotations:
+    pod-policies.kyverno.io/autogen-controllers: DaemonSet,Deployment,StatefulSet
+spec:
+  rules:
+  - name: check-app
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+          namespaceSelector:
+            matchExpressions:
+              - key: app
+                operator: Exists
+    validate:
+      failureAction: Enforce
+      message: "limits 'memory' is required"
+      pattern:
+        spec:
+          containers:
+          - resources:
+              limits:
+                memory: "?*"
+          =(initContainers):
+          - resources:
+              limits:
+                memory: "?*"
+          =(ephemeralContainers):
+          - resources:
+              limits:
+                memory: "?*"
